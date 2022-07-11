@@ -3,6 +3,24 @@
 
 
 ###############FUNCTIONS################
+
+function 2xDecode
+{
+     python3 ~/Documents/Github/CTF/Python/2xPadDecrypt.py $1 $2
+
+}
+
+function gt
+{
+    cd ~/Documents/Github/CTF/
+}
+
+
+function htb
+{
+    cd ~/Documents/HackTheBox
+}
+
 function cphere
 {
     if [ $1 == "-d" ];
@@ -18,7 +36,8 @@ function cphere
 
 function gitkraken
 {
-    ./~/Downloads/gitkraken
+    cd ~/Downloads/gitkraken/gitkraken
+    ./gitkraken --no-sandbox
 }
 
 function dl
@@ -73,6 +92,16 @@ function reload
 {
     clear
     source ~/.zshrc
+}
+
+function bpush
+{
+    cp ~/.zshrc ~/Documents/Github/CTF/
+    cd ~/Documents/Github/CTF/
+    git pull
+    git add *
+    git commit -m $1
+    git push
 }
 
 function mvhere
