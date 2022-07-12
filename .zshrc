@@ -3,11 +3,20 @@
 
 
 ###############FUNCTIONS################
+function cpzshrc
+{
+    cp ~/.zshrc ~/Documents/Github/CTF/.zshrc
+}
+
+function cpgit
+{
+    cp $1 ~/Documents/Github/CTF/Python/$1
+}
+
 
 function 2xDecode
 {
-     python3 ~/Documents/Github/CTF/Python/2xPadDecrypt.py $1 $2
-
+    python3 ~/Documents/Github/CTF/Python/2xPadDecrypt.py $1 $2
 }
 
 function gt
@@ -85,7 +94,7 @@ function doc
 
 function rot13
 {
-     echo $1 | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+    echo $1 | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 }
 
 function reload
