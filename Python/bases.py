@@ -5,6 +5,7 @@ import sys
 ############# CLASSIC BASE CHANGES##############
 
 def hex_to_bin(s):
+    s = str(s)
     s = s.replace(" ", "")
     i=0 
     j=0 
@@ -35,6 +36,7 @@ def hex_to_bin(s):
     return sbin
 
 def bin_to_dec(sbin):
+    sbin = str(sbin)
     sbin = sbin.replace(" ", "")
     i = len(sbin)-1
     res = 0
@@ -48,6 +50,7 @@ def bin_to_dec(sbin):
     #print(res)
 
 def bin_to_ascii(sbin):
+    sbin = str(sbin)
     sbin = sbin.replace(" ", "")
     i = 0
     res = ""
@@ -66,7 +69,7 @@ def bin_to_ascii(sbin):
 def nb_to_ascii(nb):
     tmp = ""
     res = ""
-
+    nb = str(nb)
     for i in range(0,len(nb)):
         if nb[i] != " ":
             if nb[i] == '{' or nb[i] == '}':
@@ -88,7 +91,7 @@ def nb_to_ascii(nb):
 ############### COMBINATION ##################
 
 def hex_to_txt(s):
-    sx = hex_to_bin(s)
+    sx = hex_to_bin(str(s))
     return bin_to_ascii(sx)
 
 
