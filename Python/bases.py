@@ -37,15 +37,21 @@ def hex_to_bin(s):
 
 def bin_to_dec(sbin):
     sbin = str(sbin)
-    sbin = sbin.replace(" ", "")
     i = len(sbin)-1
-    res = 0
+    res = ""
+    x= 0
     e = 0
     while i >= 0:
-        if sbin[i] != " ":
-            res += (int(sbin[i]) * (2 ** e))
+        if sbin[i] != " " and i > 0:
+            x += int(sbin[i]) * (2 ** e)
             e+=1
-            i-=1
+        else:
+            res = str(x) + res
+            x = 0
+            e = 0
+            if i > 0:
+                res = " " + res 
+        i-=1
     return res
     #print(res)
 
@@ -60,39 +66,64 @@ def bin_to_ascii(sbin):
         for j in range(0,8):
             if i+j < len(sbin):
                 tmp += sbin[i+j]
-        x = int(tmp, 2)
+        #x = int(tmp, 2)
+        x = int(bin_to_dec(tmp))
         res += chr(x)
         i+=8
     return res
     #print(res)
 
-def nb_to_ascii(nb):
+def dec_to_ascii(nb):
     tmp = ""
     res = ""
     nb = str(nb)
     for i in range(0,len(nb)):
         if nb[i] != " ":
-            if nb[i] == '{' or nb[i] == '}':
-                res+=nb[i]
+            tmp += nb[i]
+            if i == len(nb)-1:
+                res += chr(int(tmp))
                 tmp = ""
-            else:
-                tmp += nb[i]
-            print(res)
         else:
-            if tmp != "":
-                print(tmp)
-                res += chr(int(tmp)+96)
-                tmp = ""
-        return res
-    #print(res)
+            res += chr(int(tmp))
+            tmp = ""
+    return res
 
+def oct_to_bin(s):
+    res = ""
+    i = 0
+    while i < len(s):
+        y = ""
+        if s[i] != " ":
+            tmp = str(s[i])
+            for k in range(0,3):
+                if int(s[i]) < 8:
+                    x = int(tmp) % 2
+                    y = str(x) + y
+                    tmp = str(int(tmp) // 2)
+                else:
+                    raise ValueError("Number must be below 8 in octal")
+            res += y
+        else:
+                res += y
+                res+= " "
+        i+=1
+    return res
 ##############################################
 
 ############### COMBINATION ##################
 
 def hex_to_txt(s):
-    sx = hex_to_bin(str(s))
+    sx = hex_to_bin(s)
     return bin_to_ascii(sx)
 
+def oct_to_txt(s):
+    sy = oct_to_bin(s)
+    sz = bin_to_dec(sy)
+    return dec_to_ascii(sz)
+
+"""def oct_to_dec(s):
+    z = oct_to_bin(s)
+    print(z)
+    return bin_to_dec(s)"""
 
 ##############################################
