@@ -3,6 +3,42 @@
 
 
 ###############FUNCTIONS################
+
+function decode
+{
+    dir=$(pwd)
+    cd ~/Documents/Github/CTF/Python/
+    python3 -c 'from decode import decode; print(decode())'
+    cd $dir
+}
+
+
+function bintotxt
+{
+    dir=$(pwd)
+    cd ~/Documents/Github/CTF/Python/
+    python3 -c 'from bases import bin_to_ascii; print(bin_to_ascii('$1'))'
+    cd $dir
+}
+
+function dectotxt
+{
+    dir=$(pwd)
+    cd ~/Documents/Github/CTF/Python/
+    python3 -c 'from bases import nb_to_ascii; print(nb_to_ascii('$1'))'
+    cd $dir
+}
+
+
+function bintodec
+{
+    dir=$(pwd)
+    cd ~/Documents/Github/CTF/Python/
+    python3 -c 'from bases import bin_to_dec; print(bin_to_dec('$1'))'
+    cd $dir
+}
+
+
 function cpzshrc
 {
     cp ~/.zshrc ~/Documents/Github/CTF/.zshrc
@@ -61,7 +97,10 @@ function invert
 
 function hextotxt
 {
-    python3 ~/Documents/Programs/Python/hextotxt.py $1
+    dir=$(pwd)
+    cd ~/Documents/Github/CTF/Python/
+    python3 -c 'from bases import hex_to_txt;print(hex_to_txt('$1'))'
+    cd $dir
 }
 
 function pico
@@ -103,14 +142,18 @@ function reload
     source ~/.zshrc
 }
 
-function bpush
+function push
 {
-    cp ~/.zshrc ~/Documents/Github/CTF/
+    dir=$(pwd)
     cd ~/Documents/Github/CTF/
     git pull
+    cp ~/.zshrc ~/Documents/Github/CTF/.zshrc
     git add *
+    git add .zshrc
     git commit -m $1
     git push
+
+    cd $dir
 }
 
 function mvhere
