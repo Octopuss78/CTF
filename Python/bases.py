@@ -35,21 +35,39 @@ def hex_to_bin(s):
         i+=1
     return sbin
 
+def to_8bits(s):
+    #result will be cut to 8 bit
+    res = ""
+    n = 1
+    for i in range(0,len(s)):
+        if n <= 8:
+            res += s[i]
+        else:
+            n = 0
+            if i != len(s)-1 and s[i] == " ":
+                res += " "
+        n+=1
+    if n <= 8:
+        for k in range (0, 9-n):
+            res = '0' + res
+    return res 
+
 def bin_to_dec(sbin):
     sbin = str(sbin)
     i = len(sbin)-1
     res = ""
     x= 0
     e = 0
-    while i >= 0:
+    while i >= 0:    
         if sbin[i] != " " and i > 0:
             x += int(sbin[i]) * (2 ** e)
             e+=1
         else:
+            x += int(sbin[i]) * (2 ** e)
             res = str(x) + res
             x = 0
             e = 0
-            if i > 0:
+            if i >= 0 and sbin[i] == " ":
                 res = " " + res 
         i-=1
     return res
@@ -90,6 +108,7 @@ def dec_to_ascii(nb):
 
 def oct_to_bin(s):
     res = ""
+    print(len(s))
     i = 0
     while i < len(s):
         y = ""
@@ -108,6 +127,26 @@ def oct_to_bin(s):
                 res+= " "
         i+=1
     return res
+
+def dec_to_bin(s):
+    s = str(s)
+    res = ""
+    i = 0
+    nb = ""
+    while i < len(s):
+        if s[i] != " ":
+            nb += str(s[i])
+        if i >= len(s)-1 or s[i] == " ":
+            x = int(nb)
+            while x > 0:
+                res = str(x % 2) + res
+                x = x // 2
+            nb = ""
+            if i < len(s) -1:
+                res += " "
+        i+=1
+    return res
+
 ##############################################
 
 ############### COMBINATION ##################

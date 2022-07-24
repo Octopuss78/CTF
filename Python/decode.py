@@ -4,7 +4,7 @@ from bases import *
 ##### bases.py and 2xPadDecrypt must be in the same directory #####
 
 def check_dec(nbe):
-    if nbe == 1 or nbe == 2 or nbe == 5:
+    if nbe == 1 or nbe == 2 or nbe == 5 or nbe == 4:
         print("Now choose the conversion method:", '\n',
                 "(1): Ascii/text", '\n',
                 "(2): Decimal", '\n')
@@ -75,6 +75,8 @@ def decode():
             return oct_to_dec(s)"""
         if nbd == 1:
             return oct_to_txt(s)
+        elif nbd == 2:
+            return dec_to_bin(s)
         else:
             raise ValueError("invalid input")
 
