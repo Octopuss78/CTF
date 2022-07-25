@@ -17,7 +17,7 @@ def to_nbits(s,b):
                 res += " "
         n+=1
     if i < b:
-        for k in range (0, b+1-n):
+        for k in range (0, b-n):
             res = '0' + res
     return res, tmp
 
@@ -25,18 +25,20 @@ def to_nbits(s,b):
 def uu_decode(s):
     res = ""
     tmp = ""
+    nb = 0
     for i in range(0, len(s)):
         a = ord(s[i])
-        z = to_nbits(dec_to_bin(a),8)
-        print(z)
-        nb = 2 + ((len(tmp) % 4) * 2)
+        z = to_nbits(dec_to_bin(a),8)[0]
+        nb += 2
+        if nb == 8:
+            nb = 2
         #if nb == 8:
         #   nb = 2
-        x,r = to_nbits(s,(len(tmp)+2))
-        print(x)
+        x,r = to_nbits(z,8-nb)
         y = tmp + x
         tmp = r
         b = bin_to_dec(y)
+        print("b:", b)
         res += chr(int(b) + 32)
-
+        print(int(b) + 32)
     return res

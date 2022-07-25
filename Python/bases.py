@@ -160,6 +160,10 @@ def oct_to_txt(s):
     sz = bin_to_dec(sy)
     return dec_to_ascii(sz)
 
+def oct_to_dec(s):
+    sb = oct_to_bin(s)
+    return bin_to_dec(sb)
+
 """def oct_to_dec(s):
     z = oct_to_bin(s)
     print(z)
